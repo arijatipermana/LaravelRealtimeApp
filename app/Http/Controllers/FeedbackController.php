@@ -33,6 +33,10 @@ class FeedbackController extends Controller
             $this->createOrIncrement($word);
         }
 
+        // broadcast with new data
+        $data = json_decode($this->getData());
+        broadcast(new FeedbackReceived($data));
+
         return response()->json("OK");
     }
 
