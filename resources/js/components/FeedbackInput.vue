@@ -12,7 +12,7 @@
                 <div class="col-md-6 offset-md-3">
                     <input type="text" class="form-control form-control-lg" placeholder="contoh: coding bug kopi" v-bind:value="feedback" v-on:inout="feedback = $event.target.value"/>
                     <br/>
-                    <button:disabled="status == 'PROCESSING'" v-on:click="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
+                    <button :disabled="status == 'PROCESSING'" v-on:click="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
                 <br/>
                 <div v-if="status == 'ERROR'" class="alert alert-danger">
                     {{ message }}
@@ -45,21 +45,22 @@
         methods: {
             submit: function() {
                 this.$data.status = "SUBMITTING";
-                axios.post("/api/v1/feedback", {
-                    words:this.$data.feedback
-                })
-                .then(response => {
-                    this.$data.status = "SUCCESS";
-                    this.$data.message = "Terima kasih atas partisipasi Anda !";
-                })
-                .catch(error => {
-                    this.$data.status = "ERROR";
-                    if (error.response.data.message) {
-                        this.$data.message = error.response.data.message;
-                    } else {
-                        this.$data.message = "Terjadi kesalahan saat menyimpan feedback";
-                    }
-                });
+                axios
+                    .post("/api/v1/feedback", {
+                        words:this.$data.feedback
+                    })
+                    .then(response => {
+                        this.$data.status = "SUCCESS";
+                        this.$data.message = "Terima kasih atas partisipasi Anda !";
+                    })
+                    .catch(error => {
+                        this.$data.status = "ERROR";
+                        if (error.response.data.message) {
+                            this.$data.message = error.response.data.message;
+                        } else {
+                            this.$data.message = "Terjadi kesalahan saat menyimpan feedback";
+                        }
+                    });
             }
         },
         mounted() {}
