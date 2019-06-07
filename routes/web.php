@@ -18,3 +18,5 @@
 Route::group(['prefix' => 'api/v1'], function () {
     Route::post('feedback', 'FeedbackController@store');
 });
+
+Route::get('feedback/input', 'FeedbackController@input');

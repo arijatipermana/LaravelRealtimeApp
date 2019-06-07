@@ -79,4 +79,9 @@ class FeedbackController extends Controller
             ]);
         }
     }
+
+    public function input()
+    {
+        return view('input');
+    }
 }
