@@ -23,7 +23,7 @@
         "vue": "^2.5.17"
     },
     "dependencies": {
-        "chart.js": "^2.8.0",
+        "chart.js": "^2.9.4",
         "google-palette": "^1.1.0",
         "laravel-echo": "^1.5.3",
         "pusher-js": "^4.4.0",
